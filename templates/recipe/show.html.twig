@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recette: {{ recette.title }}{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1> {{ recette.title | upper }}</h1>
+    <h2>Préparation</h2>
+    <h3>Temps : {{ recette.duration }} minutes</h3>
+    <p>
+        {{ recette.content }}
+    </p>
+
+    <a href="{{ path('recipes.edit', {'id': recette.id}) }}">
+        <button type="button" class="btn btn-secondary">Editer</button>
+    </a>
+    
+</div>
+{% endblock %}

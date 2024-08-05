@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Des recettes et des actus culinaires</h1>
+
+    <p>Plus de 90 000 recettes faciles et rapides pour vous inspirer en cuisine.</p>
+
+    <ul>
+        {% for recette in recettes %}
+            <li>
+                <a href="{{ path('recipes.show', {'slug': recette.slug, 'id': recette.id}) }}">{{ recette.title }}</a>
+            </li>
+        {% endfor %}
+        
+    </ul>
+</div>
+{% endblock %}

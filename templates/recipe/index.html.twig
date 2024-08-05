@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les recettes{% endblock %}
+
+{% block body %}
+
+<h1> {{ titre }}</h1>
+<a href="{{ path('recipes.add') }}">
+    <button type="button" class="btn btn-success">Nouvelle recette</button>
+</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for recette in recettes %}
+        <tr>  
+            <td>
+                <a href="{{ path('recipes.show', {'slug': recette.slug, 'id': recette.id}) }}">{{ recette.title }}</a>
+            </td>
+            <td>
+                <div class="d-flex gap-1">
+                    <a class="btn btn-secondary" href="{{ path('recipes.edit', {'id': recette.id}) }}">Editer</a>
+                    <form action="{{ path('recipes.delete', {'id': recette.id}) }}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
